@@ -3,11 +3,7 @@ ja:
     models:
       reservation: 予約
     attributes:
-      reservation:
-        name: お名前
-        email: メールアドレス
-        reserved_at: 予約日時
-        note: 備考
+      
   helpers:
     submit:
       create: 登録
@@ -16,3 +12,7 @@ ja:
     reservation:
       new: 新規予約
       edit: 予約編集
+      show: 予約詳細
+  time:
+    formats:
+      short: "%Y年%m月%d日 %H:%M"

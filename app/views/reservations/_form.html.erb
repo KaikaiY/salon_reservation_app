@@ -1,8 +1,7 @@
 <%= form_with(model: reservation) do |form| %>
   <% if reservation.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
-
+      <h2><%= pluralize(reservation.errors.count, "error") %> 件のエラーがあります:</h2>
       <ul>
         <% reservation.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,27 +10,28 @@
     </div>
   <% end %>
 
+  <!-- ユーザー名・メールを表示しつつ hiddenで送信 -->
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <p>Name：<%= current_user.name %></p>
+    <%= form.hidden_field :name, value: current_user.name %>
   </div>
 
   <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+    <p>Email：<%= current_user.email %></p>
+    <%= form.hidden_field :email, value: current_user.email %>
   </div>
 
   <div>
-    <%= form.label :reserved_at, style: "display: block" %>
+    <%= form.label :reserved_at, "予約日時", style: "display: block" %>
     <%= form.datetime_field :reserved_at %>
   </div>
 
   <div>
-    <%= form.label :note, style: "display: block" %>
+    <%= form.label :note, "備考", style: "display: block" %>
     <%= form.text_area :note %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "予約する" %>
   </div>
 <% end %>

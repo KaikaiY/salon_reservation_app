@@ -1,4 +1,6 @@
 class ReservationsController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_reservation, only: %i[ show edit update destroy ]
 
   # GET /reservations or /reservations.json
@@ -21,18 +23,14 @@ class ReservationsController < ApplicationController
 
   # POST /reservations or /reservations.json
   def create
-    @reservation = Reservation.new(reservation_params)
+  @reservation = current_user.reservations.build(reservation_params)
 
-    respond_to do |format|
-      if @reservation.save
-        format.html { redirect_to @reservation, notice: "Reservation was successfully created." }
-        format.json { render :show, status: :created, location: @reservation }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @reservation.errors, status: :unprocessable_entity }
-      end
-    end
+  if @reservation.save
+    redirect_to @reservation, notice: "予約が完了しました。"
+  else
+    render :new
   end
+end
 
   # PATCH/PUT /reservations/1 or /reservations/1.json
   def update

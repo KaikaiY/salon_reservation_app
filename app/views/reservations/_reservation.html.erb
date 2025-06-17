@@ -10,12 +10,12 @@
   </p>
 
   <p>
-    <strong>Reserved at:</strong>
-    <%= reservation.reserved_at %>
+    <strong>予約日時:</strong>
+    <%= l(reservation.reserved_at, format: :short) %>
   </p>
 
   <p>
-    <strong>Note:</strong>
+    <strong>備考:</strong>
     <%= reservation.note %>
   </p>
 
